@@ -1,0 +1,55 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(22, 22, 133);
+    display: flex;
+    justify-content: center;
+}
+
+main{
+    background-color: black;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 10%;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr  1fr;
+}
+
+input, .titleCalc{
+    font-size: 1.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 1%;
+    text-align: center;
+    color: white;
+}
+
+input[type=text]{
+    width: 14.5rem;
+    height: 2rem;
+    text-align: end;
+    color: black;
+    padding: 0.1rem;
+}
+
+
+input[type=button]{
+    width: 3.6rem;
+    height: 3.6rem;
+    margin: 0.1rem;
+    background-color: rgb(58, 167, 167);
+    border: none;
+    border-radius: 0.1rem;
+}
+
+input:hover[type=button]{
+    opacity: 80%;
+}

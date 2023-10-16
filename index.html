@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="style.css"></link>
+</head>
+<body>  
+    <main>
+        <p class="titleCalc">Calculadora</p>
+        <input type="text" id="inputNumber" readonly/>
+        <section class="container">        
+            <input type="button" id="btnC" value="C" onclick="typeCalc(btnC)">
+            <input type="button" id="btnPlus" value="+" onclick="typeCalc(btnPlus)">
+            <input type="button" id="btnM" value="-" onclick="typeCalc(btnM)">
+            <input type="button" id="btnClear" value="<" onclick="typeCalc(btnClear)">
+            <input type="button" id="btnMult" value="x" onclick="typeCalc(btnMult)">
+            <input type="button" id="btnDivid" value="/" onclick="typeCalc(btnDivid)">
+            <input type="button" id="btn9" value="9" onclick="typeCalc(btn9)"> 
+            <input type="button" id="btn8" value="8" onclick="typeCalc(btn8)">
+            <input type="button" id="btn7" value="7" onclick="typeCalc(btn7)">
+            <input type="button" id="btn6" value="6" onclick="typeCalc(btn6)">
+            <input type="button" id="btn5" value="5" onclick="typeCalc(btn5)">
+            <input type="button" id="btn4" value="4" onclick="typeCalc(btn4)">
+            <input type="button" id="btn3" value="3" onclick="typeCalc(btn3)">
+            <input type="button" id="btn2" value="2" onclick="typeCalc(btn2)">
+            <input type="button" id="btn1" value="1" onclick="typeCalc(btn1)">
+            <input type="button" id="btn0" value="0" onclick="typeCalc(btn0)">
+            <input type="button" id="btnDot" value="." onclick="typeCalc(btnDot)">
+            <input type="button" id="btnNegative" value="+/-" onclick="typeCalc(btnNegative)">
+            <input type="button" id="btnEquals" value="=" onclick="calculate(inputNumber)">
+    </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
