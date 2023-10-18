@@ -1,56 +1,84 @@
 const operations = ["+","-","x","/"];
+let habilateOp = true;
 
 const typeCalc = (id) => {
     let inputNumber =  document.getElementById("inputNumber");
-    let contOp = 0;
-    let operation; 
-    
+
     switch(id.value){
         case "C":
             inputNumber.value= "";
+            habilateOp = true;
             break;
 
         case "<":
             inputNumber.value = inputNumber.value.substring(0, inputNumber.value.length-1);
+            habilateOp = true;
             break;
         
         case "+/-": 
-            if(!isNaN(parseFloat(inputNumber.value)))
-                inputNumber.value = parseFloat(inputNumber.value) * (-1);
+
+            if(!isNaN(parseFloat(inputNumber.value))){
+                if((contSinal(inputNumber) == 1 && inputNumber.value[0] == "-") || contSinal(inputNumber) == 0){
+                    inputNumber.value = parseFloat(inputNumber.value) * (-1); 
+                }else if((inputNumber.value.includes("+") || inputNumber.value.includes("-") || 
+                inputNumber.value.includes("*") || inputNumber.value.includes("/"))){
+                    calculate(inputNumber);
+                    inputNumber.value = parseFloat(inputNumber.value) * (-1);
+                }
+                    
+                habilateOp = true;
+            }
+                  
             break;
         
-        // case "+":
-        // case "-":
-        // case "x":
-        // case "/":
-        // case ".":
-        //     if(!isNaN(parseFloat(inputNumber.value)))
-        //         inputNumber.value += id.value; 
-        // break;
+        case "+":
+        case "-":
+        case "x":
+        case "/":
+        case ".":
+            if(!isNaN(parseFloat(inputNumber.value)) && habilateOp){
+                if((id.value == "." && inputNumber.value[inputNumber.value.length-1] != ".") || id.value != "."){
+                    inputNumber.value += id.value; 
+                    separateNumbers(inputNumber);
+                }
+                habilateOp = false;
+            }
+
+        break;
 
         default:
-            inputNumber.value += id.value;
+             inputNumber.value += id.value;
+             separateNumbers(inputNumber);
+             habilateOp = true;
+    }
+}
 
-            for(let i=0; i < inputNumber.value.length;i++){
-                for(op of operations){
-                    if(inputNumber.value[i] == op)
-                    contOp++;
-                }
-            }
-              
-            if((contOp == 2 && inputNumber.value.indexOf("-") != 0) || contOp > 2){
-                operation = inputNumber.value.substring(inputNumber.value.length-1, inputNumber.value.length);
-               
-                if(isNaN(parseFloat(operation))){
-                    inputNumber.value =  inputNumber.value.substring(0, inputNumber.value.length-1);
-                    calculate(inputNumber);
-                    inputNumber.value += operation;
-                    console.log("a")
-            
-                }else{
-                    inputNumber.value =  inputNumber.value.substring(0, inputNumber.value.length-1);
-                }
-            }
+const contSinal = (numbers) =>{
+    let contSinal = 0;
+    for(let i=0; i < numbers.value.length;i++){
+        for(op of operations){
+            if(numbers.value[i] == op)
+            contSinal++;
+        }
+    }
+
+   return contSinal;
+}
+
+const separateNumbers = (inputNumber) =>{
+   
+    let operation; 
+    if((contSinal(inputNumber) == 2 && inputNumber.value.indexOf("-") != 0) || contSinal(inputNumber) > 2){
+        operation = inputNumber.value.substring(inputNumber.value.length-1, inputNumber.value.length);
+       
+        if(isNaN(parseFloat(operation))){
+            inputNumber.value =  inputNumber.value.substring(0, inputNumber.value.length-1);
+            calculate(inputNumber);
+            inputNumber.value += operation;
+    
+        }else{
+            inputNumber.value =  inputNumber.value.substring(0, inputNumber.value.length-1);
+        }
     }
 }
 
@@ -60,7 +88,7 @@ const calculate = (numbers) => {
     let operation;
     let result;
 
-    for(let i=0; i < inputNumber.value.length;i++){
+    for(let i=0; i < numbers.value.length;i++){
         for(op of operations){
             if(numbers.value[i] == op){
                 operation =  numbers.value[i];
@@ -87,6 +115,12 @@ const calculate = (numbers) => {
         default:
             result = "Error"
     }
+    
+    if(result == "Error" && !isNaN(number1))
+        result = number1;
 
+    if(!Number.isInteger(result))
+        result = result.toPrecision(3);
+    
     numbers.value = result;
 }

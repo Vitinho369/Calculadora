@@ -2,13 +2,13 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: rgb(22, 22, 133);
+    background-color:  rgb(117, 161, 113);
     display: flex;
     justify-content: center;
 }
 
 main{
-    background-color: black;
+    background-color: rgb(22, 22, 133);
     border-radius: 0.5rem;
     padding: 0.5rem;
     position: absolute;
@@ -29,11 +29,15 @@ input, .titleCalc{
     padding: 0;
     margin: 1%;
     text-align: center;
-    color: white;
+    color: black;
+}
+
+.titleCalc{
+    font-weight: bold;
 }
 
 input[type=text]{
-    width: 14.5rem;
+    width: 15rem;
     height: 2rem;
     text-align: end;
     color: black;
@@ -52,4 +56,10 @@ input[type=button]{
 
 input:hover[type=button]{
     opacity: 80%;
+}
+
+#btnEquals{
+    grid-column: span 2;
+    width: 7.6rem;
+    height: 3.6rem;
 }
